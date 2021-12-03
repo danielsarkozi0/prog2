@@ -1,0 +1,106 @@
+{
+    "actions": {
+        "disallows": {
+            "resuming": true
+        }
+    },
+    "context": {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/0Z4D4o5cySOVUU40cRKIUu"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0Z4D4o5cySOVUU40cRKIUu",
+        "type": "playlist",
+        "uri": "spotify:playlist:0Z4D4o5cySOVUU40cRKIUu"
+    },
+    "currently_playing_type": "track",
+    "is_playing": true,
+    "item": {
+        "album": {
+            "album_type": "album",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4",   
+                    "id": "3TVXtAsR1Inumwj472S9r4",
+                    "name": "Drake",
+                    "type": "artist",
+                    "uri": "spotify:artist:3TVXtAsR1Inumwj472S9r4"
+                },
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4",   
+                    "id": "3TVXtAsR1Inumwj472S9r4",
+                    "name": "bela",
+                    "type": "artist",
+                    "uri": "spotify:artist:3TVXtAsR1Inumwj472S9r4"
+                }
+            ],
+            "available_markets": [],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/1ATL5GLyefJaxhQzSPVrLX"
+            },
+            "href": "https://api.spotify.com/v1/albums/1ATL5GLyefJaxhQzSPVrLX",
+            "id": "1ATL5GLyefJaxhQzSPVrLX",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e02f907de96b9a4fbc04accc0d5",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851f907de96b9a4fbc04accc0d5",
+                    "width": 64
+                }
+            ],
+            "name": "Scorpion",
+            "release_date": "2018-06-29",
+            "release_date_precision": "day",
+            "total_tracks": 25,
+            "type": "album",
+            "uri": "spotify:album:1ATL5GLyefJaxhQzSPVrLX"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
+                },
+                "href": "https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4",
+                "id": "3TVXtAsR1Inumwj472S9r4",
+                "name": "Drake",
+                "type": "artist",
+                "uri": "spotify:artist:3TVXtAsR1Inumwj472S9r4"
+            }
+        ],
+        "available_markets": [],
+        "disc_number": 2,
+        "duration_ms": 219960,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USCM51800217"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/44Du2IM1bGY7dicmLfXbUs"
+        },
+        "href": "https://api.spotify.com/v1/tracks/44Du2IM1bGY7dicmLfXbUs",
+        "id": "44Du2IM1bGY7dicmLfXbUs",
+        "is_local": false,
+        "name": "Final Fantasy",
+        "popularity": 57,
+        "preview_url": "https://p.scdn.co/mp3-preview/bba5bbfb3a8a3dd42db87e59cdefca8562def827?cid=6a76f0e5d491435ab6bb5d1a85910475",
+        "track_number": 12,
+        "type": "track",
+        "uri": "spotify:track:44Du2IM1bGY7dicmLfXbUs"
+    },
+    "progress_ms": 214232,
+    "timestamp": 1637950773002
+}
