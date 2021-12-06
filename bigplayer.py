@@ -36,7 +36,6 @@ class BigPlayer(Screen):
         self.ids.progressbar_song.value = prog_value
 
     def current_song(self):
-        print("what is playing?")
         query = "https://api.spotify.com/v1/me/player/currently-playing"
         response = requests.get(query,
                                 headers={"Content-Type": "application/json",
@@ -59,9 +58,7 @@ class BigPlayer(Screen):
         self.ids.album_name.text=str(current_playing_album)
         self.progress((response_json["progress_ms"]),(response_json["item"]["duration_ms"]))
 
-
     def is_playing(self):
-        print("is it playing?")
         query = "https://api.spotify.com/v1/me/player"
         response = requests.get(query,
                                 headers={"Content-Type": "application/json",
@@ -71,14 +68,12 @@ class BigPlayer(Screen):
 
     def pause_song(self):
         if self.is_playing():
-            print("Trying to pause")
             query = "https://api.spotify.com/v1/me/player/pause"
             response = requests.put(query,
                                     headers={"Content-Type": "application/json",
                                             "Authorization": "Bearer {}".format(access_token)})
             self.ids.play_pause_song.source="pics/play_black.png"
         else:
-            print("Trying to play")
             query = "https://api.spotify.com/v1/me/player/play"
             response = requests.put(query,
                                 headers={"Content-Type": "application/json",
@@ -87,7 +82,6 @@ class BigPlayer(Screen):
         self.current_song()
 
     def next_song(self):
-        print("Trying to skip to next")
         query = "https://api.spotify.com/v1/me/player/next"
         response = requests.post(query,
                                 headers={"Content-Type": "application/json",
@@ -96,42 +90,37 @@ class BigPlayer(Screen):
         self.current_song()
 
     def previous_song(self):
-        print("Trying to skip to previous")
         query = "https://api.spotify.com/v1/me/player/previous"
         response = requests.post(query,
                                 headers={"Content-Type": "application/json",
                                         "Authorization": "Bearer {}".format(access_token)})
 
-    tmp = 1
+    repeat_song_counter = 1
     def repeat_song(self):
-        print("Repeating....")
         query = "https://api.spotify.com/v1/me/player/repeat"
-        if self.tmp % 2 == 0:
+        if self.repeat_song_counter % 2 == 0:
             repeat_state = "off"
-            self.tmp+=1
+            self.repeat_song_counter+=1
             self.ids.repeat_current_song.source="pics/repeat_black.png"
         else:
             repeat_state = "track"
-            self.tmp+=1
+            self.repeat_song_counter+=1
             self.ids.repeat_current_song.source="pics/repeat_green_track.png"
-        print(repeat_state)
         request_body = {"state":repeat_state}
         response = requests.put(query,params=request_body,headers={"Content-Type": "application/json",
                                 "Authorization": "Bearer {}".format(access_token)})
 
-    tmp2 = 1
+    shuffle_song_counter = 1
     def shuffle_song(self):
-        print("Shuffling....")
         query = "https://api.spotify.com/v1/me/player/shuffle"
-        if self.tmp % 2 == 0:
+        if self.shuffle_song_counter % 2 == 0:
             repeat_state = False
-            self.tmp+=1
+            self.shuffle_song_counter+=1
             self.ids.shuffle_song.source="pics/shuffle_black.png"
         else:
             repeat_state = True
-            self.tmp+=1
+            self.shuffle_song_counter+=1
             self.ids.shuffle_song.source="pics/shuffle_green.png"
-        print(repeat_state)
         request_body = {"state":repeat_state}
         response = requests.put(query,params=request_body,headers={"Content-Type": "application/json",
                                 "Authorization": "Bearer {}".format(access_token)})

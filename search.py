@@ -63,7 +63,6 @@ class SearchWindow(Screen):
                 self.ids.root_layout.remove_widget(self.ids.root_layout.children[0])
 
     def play_item(self,link):
-        print("next song...")
         query = "https://api.spotify.com/v1/me/player/queue?uri={}".format(link)
         requests.post(query,
                         headers={"Content-Type": "application/json",
