@@ -1,181 +1,217 @@
-SearchWindow:
+WindowManager:
+    BigPlayer:
+    SearchWindow:
 
 <BigPlayer>: #BoxLayout
-    orientation: "vertical"
-    canvas.before:
-        Color: 
-            rgba: 1,1,1,1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    #visszanyil, playlist_name
-    GridLayout:
-        cols:3
-        rows:1
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: 0.5, None
-            on_press:
-            Image:
-                id: big_player_back
-                source: "pics/arrow_left_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-        BoxLayout:
-            orientation: "vertical"
-            pos_hint:{"center_x": 0.5}
-            spacing: -15
-            size_hint: 0.5, None
-            Label:
-                text:"Playing from:"
-                bold: True
-            Label:
-                id: album_name
-        Label:
-            size_hint: 0.5, None
-    AsyncImage:
-        id: current_track_image
-        allow_stretch: False
-        size_hint: 3.6,3.6
-        pos_hint: {"center_x":0.5}
+    name: "bigplayerwindow"
     BoxLayout:
         orientation: "vertical"
-        pos_hint: {"center_x":0.54}
-        Label:
-            text_size: self.size
-            id:current_song_name
-            bold: True
-        Label:
-            text_size: self.size
-            id: current_song_artist
-    ProgressBar:
-        max: 100
-        value: 25
-        size_hint: 0.96,1
-        pos_hint: {"center_x":0.5}
-    GridLayout:
-        cols:3
-        rows:1
-        size_hint: 1,1
-        Label:
-            id: current_position
-            size_hint: 0.3, None
-        Label:
-        Label:
-            id:current_song_length
-            size_hint: 0.3, None
-    GridLayout:
-        rows:1
-        cols:5
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press:root.shuffle_song()
-            Image:
-                id: shuffle_song
-                source: "pics/shuffle_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press:root.previous_song()
-            Image:
-                id: play_prev_song
-                source: "pics/prev_song_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press:root.pause_song()
-            Image:
-                id: play_pause_song
-                source: "pics/play_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press: root.next_song()  
-            Image:
-                id: play_next_song
-                source: "pics/next_song_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press: root.repeat_song()
-            Image:
-                id: repeat_current_song
-                source: "pics/repeat_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
+        canvas.before:
+            Color: 
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        #visszanyil, playlist_name
+        GridLayout:
+            cols:3
+            rows:1
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: 0.5, None
+                on_press: 
+                    app.root.current = "searchwindow"
+                    root.manager.transition.direction = "right"
+                Image:
+                    id: big_player_back
+                    source: "pics/arrow_left_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            BoxLayout:
+                orientation: "vertical"
+                pos_hint:{"center_x": 0.5}
+                spacing: -15
+                size_hint: 0.5, None
+                Label:
+                    text:"Playing from:"
+                    bold: True
+                Label:
+                    id: album_name
+            Label:
+                size_hint: 0.5, None
+        AsyncImage:
+            id: current_track_image
+            allow_stretch: False
+            size_hint: 3.6,3.6
+            pos_hint: {"center_x":0.5}
+        BoxLayout:
+            orientation: "vertical"
+            pos_hint: {"center_x":0.54}
+            Label:
+                text_size: self.size
+                id:current_song_name
+                bold: True
+            Label:
+                text_size: self.size
+                id: current_song_artist
+        ProgressBar:
+            id: progressbar_song
+            size_hint: 0.96,1
+            pos_hint: {"center_x":0.5}
+        GridLayout:
+            cols:3
+            rows:1
+            size_hint: 1,1
+            Label:
+                id: current_position
+                size_hint: 0.3, None
+            Label:
+            Label:
+                id:current_song_length
+                size_hint: 0.3, None
+        GridLayout:
+            rows:1
+            cols:5
+            pos_hint: {"center_x":0.65}
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press:root.shuffle_song()
+                Image:
+                    id: shuffle_song
+                    source: "pics/shuffle_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press:root.previous_song()
+                Image:
+                    id: play_prev_song
+                    source: "pics/prev_song_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press:root.pause_song()
+                Image:
+                    id: play_pause_song
+                    source: "pics/play_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press: root.next_song()  
+                Image:
+                    id: play_next_song
+                    source: "pics/next_song_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press: root.repeat_song()
+                Image:
+                    id: repeat_current_song
+                    source: "pics/repeat_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
 
 <SearchWindow>: #GridLayout
-    cols:1
-    rows:3
-    canvas.before:
-        Color: 
-            rgba: 1,1,1,1
-        Rectangle:
-            pos: self.pos
-            size: self.size
+    name: "searchwindow"
     GridLayout:
-        cols:2
-        rows:1
-        padding: 5
-        TextInput:
-            id:search_item
-            multiline: False
-            size_hint: (1, None)
-            height: 50
-            font_size: 30
-            hint_text: "Seach songs..."
-        Button:
-            background_color: 1,1,1,1
-            background_normal: ""
-            background_down: ""
-            size_hint: None, None
-            height: "50dp"
-            width: "50dp"
-            on_press: root.search_item()  
-            Image:
-                source: "pics/search_black.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.center_y
-    ScrollView:
-        do_scroll_x: False
-        do_scroll_y: True
-        size_hint_y: None
-        pos_hint:{"left":1}
+        cols:1
+        rows:3
+        canvas.before:
+            Color: 
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
         GridLayout:
-            id:root_layout
-            cols:1
-            size_hint_y:None
-            height : self.minimum_height
+            cols:2
+            rows:1
+            spacing: 10
+            padding: (5,40,0,0)
+            width: self.width
+            size_hint: 0.3, None
+            TextInput:
+                id:search_item
+                multiline: False
+                size_hint: (1, None)
+                height: "50dp"
+                font_size: 30
+                hint_text: "Search songs..."
+            Button:
+                background_color: 1,1,1,1
+                background_normal: ""
+                background_down: ""
+                size_hint: None, None
+                height: "50dp"
+                width: "50dp"
+                on_press: 
+                    root.search_item()
+                Image:
+                    source: "pics/search_black.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+        BoxLayout:
+            orientation: "vertical"
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id:root_layout
+                    cols:1
+                    size_hint_y:None
+                    height : self.minimum_height
+
+        AnchorLayout:
+            size_hint: 1, None
+            height: 100
+            anchor_x:"center"
+            anchor_y: "bottom"
+            BoxLayout:
+                orientation:"horizontal"
+                pos_hint: {"center":0.5}
+                Button:
+                    font_size: 20
+                    background_color: 1,1,1,1
+                    background_normal: ""
+                    background_down: ""
+                    size_hint: 1,None
+                    height: "80dp"
+                    on_press: 
+                        app.root.current = "bigplayerwindow"
+                        root.manager.transition.direction = "left"
+                    Image:
+                        source:"pics/radio_black.png"
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+
 <Label>
     color: (0, 0, 0, 1)
